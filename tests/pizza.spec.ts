@@ -1713,6 +1713,8 @@ test('User Profile and Nav', async ({ page }) => {
         await route.fulfill({ json: loginRes });
     });
 
+    
+
 
     await page.goto('http://localhost:5173/');
     await page.getByRole('link', { name: 'Login' }).click();
@@ -1725,4 +1727,118 @@ test('User Profile and Nav', async ({ page }) => {
     await page.getByLabel('Global').getByRole('link', { name: 'Franchise' }).click();
     await page.getByRole('link', { name: 'About' }).click();
     await page.getByRole('link', { name: 'History' }).click();
+
+
 });
+
+test('Login and Logout', async ({ page }) => {
+    await page.route('*/**/api/auth', async (route) => {
+        const loginReq = { "email": "t@t.t", "password": "t" }
+
+        if (route.request().method() === 'PUT') {
+            const loginRes = {
+                "user": {
+                    "id": 4,
+                    "name": "Test",
+                    "email": "t@t.t",
+                    "roles": []
+                },
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IlRlc3QiLCJlbWFpbCI6InRAdC50Iiwicm9sZXMiOltdLCJpYXQiOjE3Mzk2ODYxNjZ9.hxmF_r2GsHWujAYQ7Y-_evOZ3WVjH7VyXUpLI_PUck4"
+            };
+
+            expect(route.request().method()).toBe('PUT');
+            expect(route.request().postDataJSON()).toMatchObject(loginReq);
+            await route.fulfill({ json: loginRes });
+        }
+        if (route.request().method() === 'DELETE') {
+            expect(route.request().method()).toBe('DELETE');
+            await route.fulfill({ status: 200 });
+        }
+    });
+    await page.goto('http://localhost:5173/');
+    await page.getByRole('link', { name: 'Login' }).click();
+    await page.getByRole('textbox', { name: 'Email address' }).click();
+    await page.getByRole('textbox', { name: 'Email address' }).fill('t@t.t');
+    await page.getByRole('textbox', { name: 'Email address' }).press('Tab');
+    await page.getByRole('textbox', { name: 'Password' }).fill('t');
+    await page.getByRole('textbox', { name: 'Password' });
+    await page.getByRole('button', { name: 'Login' }).click();
+    await page.getByRole('link', { name: 'Logout' }).click();
+  });
+
+
+test('Login Admin User and Create and Delete Store', async ({ page }) => {
+
+    await page.route('*/**/api/auth', async (route) => {
+        const loginReq = { "email": "a@jwt.com", "password": "admin" }
+
+
+        const loginRes = {
+            "user": {
+                "id": 4,
+                "name": "Test",
+                "email": "t@t.t",
+                "roles": []
+            },
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IlRlc3QiLCJlbWFpbCI6InRAdC50Iiwicm9sZXMiOltdLCJpYXQiOjE3Mzk2ODYxNjZ9.hxmF_r2GsHWujAYQ7Y-_evOZ3WVjH7VyXUpLI_PUck4"
+        };
+
+        expect(route.request().method()).toBe('PUT');
+        expect(route.request().postDataJSON()).toMatchObject(loginReq);
+        await route.fulfill({ json: loginRes });
+    });
+
+    await page.route('*/**/api/franchise/4', async (route) => {
+        const loginRes = [{"id":82,"name":"Franchise_1738863283037","admins":[{"id":4,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":77,"name":"name","totalRevenue":0}]},{"id":83,"name":"Franchise_1738863283178","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":50,"name":"Store","totalRevenue":0}]},{"id":84,"name":"Franchise_1738863283223","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":85,"name":"Franchise_1738863305403","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":86,"name":"Franchise_1738863305529","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":52,"name":"Store","totalRevenue":0}]},{"id":87,"name":"Franchise_1738863305568","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":88,"name":"Franchise_1738863324370","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":89,"name":"Franchise_1738863324524","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":54,"name":"Store","totalRevenue":0}]},{"id":90,"name":"Franchise_1738863324567","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":91,"name":"Franchise_1738863336607","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":92,"name":"Franchise_1738863336771","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":56,"name":"Store","totalRevenue":0}]},{"id":93,"name":"Franchise_1738863336814","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":94,"name":"Franchise_1738863777640","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":95,"name":"Franchise_1738863777797","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":58,"name":"Store","totalRevenue":0}]},{"id":96,"name":"Franchise_1738863777835","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":97,"name":"Franchise_1738863836151","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":98,"name":"Franchise_1738863836287","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":60,"name":"Store","totalRevenue":0}]},{"id":99,"name":"Franchise_1738863836320","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":100,"name":"Franchise_1738864059891","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":62,"name":"Store","totalRevenue":0}]},{"id":101,"name":"Franchise_1738864059930","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":102,"name":"Franchise_1738864084693","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":64,"name":"Store","totalRevenue":0}]},{"id":103,"name":"Franchise_1738864128818","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":65,"name":"Store","totalRevenue":0}]},{"id":104,"name":"Franchise_1738864128853","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":105,"name":"Franchise_1738864188815","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":106,"name":"Franchise_1738864189150","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":67,"name":"Store","totalRevenue":0}]},{"id":107,"name":"Franchise_1738864189185","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":108,"name":"Franchise_1738864199170","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":109,"name":"Franchise_1738864199517","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":69,"name":"Store","totalRevenue":0}]},{"id":110,"name":"Franchise_1738864199730","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":111,"name":"Franchise_1738865935017","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]},{"id":112,"name":"Franchise_1738865935357","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[{"id":71,"name":"Store","totalRevenue":0}]},{"id":113,"name":"Franchise_1738865935559","admins":[{"id":28,"name":"Admin User","email":"a@jwt.com"}],"stores":[]}];
+
+        expect(route.request().method()).toBe('GET');
+        await route.fulfill({ json: loginRes });
+    });
+
+    ///api/franchise/82/store
+    await page.route('*/**/api/franchise/82/store', async (route) => {
+        const loginReq = {"id":"","name":"test"};
+
+
+        const loginRes = {"id":80,"franchiseId":82,"name":"test"};
+
+        expect(route.request().method()).toBe('POST');
+        expect(route.request().postDataJSON()).toMatchObject(loginReq);
+        await route.fulfill({ json: loginRes });
+    });
+
+    await page.route('*/**/api/franchise/82/store/80', async (route) => {
+
+
+        const loginRes = {"message":"store deleted"};
+
+        expect(route.request().method()).toBe('DELETE');
+        await route.fulfill({ json: loginRes });
+    });
+
+    await page.goto('http://localhost:5173/');
+    await page.getByRole('link', { name: 'Login' }).click();
+    await page.getByRole('textbox', { name: 'Email address' }).click();
+    await page.getByRole('textbox', { name: 'Email address' }).fill('a@jwt.com');
+    await page.getByRole('textbox', { name: 'Password' }).click();
+    await page.getByRole('textbox', { name: 'Password' }).fill('admin');
+    await page.getByRole('button', { name: 'Login' }).click();
+    await page.getByLabel('Global').getByRole('link', { name: 'Franchise' }).click();
+    await page.getByRole('button', { name: 'Create store' }).click();
+    await page.getByRole('textbox', { name: 'store name' }).click();
+    await page.getByRole('textbox', { name: 'store name' }).fill('test');
+    await page.getByRole('button', { name: 'Create' }).click();
+    await page.getByRole('button', { name: 'Close' }).click();
+    await page.getByRole('button', { name: 'Close' }).click();
+    // await page.getByRole('link', { name: 'Logout' }).click();
+    // await page.getByRole('link', { name: 'Logout' }).click();
+  });
+
+  test('Not Found', async ({ page }) => {
+    await page.goto('http://localhost:5173/test');
+  });
+
+
+  test('Docs Exists...', async ({ page }) => {
+    await page.goto('http://localhost:5173/docs');
+  });
