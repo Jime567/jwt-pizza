@@ -45,3 +45,33 @@ test('Register New User', async ({ page }) => {
     await page.getByRole('button', { name: 'Register' }).click();
   });
 
+
+  test('Login User', async ({ page }) => {
+    await page.route('*/**/api/auth', async (route) => {
+        const loginReq = {email: "t@t.t", password: "t"}
+
+        
+        const loginRes = {
+            "user": {
+                "id": 4,
+                "name": "Test",
+                "email": "t@t.t",
+                "roles": []
+            },
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IlRlc3QiLCJlbWFpbCI6InRAdC50Iiwicm9sZXMiOltdLCJpYXQiOjE3Mzk2ODE3NjZ9.zTEXYTCEnmhgBmE5n8DBQev-rGynRaEq27N_GROobfE"
+        };
+
+        expect(route.request().method()).toBe('PUT');
+        expect(route.request().postDataJSON()).toMatchObject(loginReq);
+        await route.fulfill({ json: loginRes });
+      });
+
+    await page.goto('http://localhost:5173/');
+
+    await page.getByRole('link', { name: 'Login' }).click();
+    await page.getByRole('textbox', { name: 'Email address' }).click();
+    await page.getByRole('textbox', { name: 'Email address' }).fill('t@t.t');
+    await page.getByRole('textbox', { name: 'Password' }).click();
+    await page.getByRole('textbox', { name: 'Password' }).fill('t');
+    await page.getByRole('button', { name: 'Login' }).click();
+  });
