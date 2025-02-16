@@ -1230,7 +1230,7 @@ test('Order a Pizza', async ({ page }) => {
     });
 
     await page.route('*/**/api/order', async (route) => {
-        const loginReq = {"items":[{"menuId":1,"description":"Veggie","price":0.0038},{"menuId":2,"description":"Pepperoni","price":0.0042}],"storeId":"8","franchiseId":20};
+        const loginReq = { "items": [{ "menuId": 1, "description": "Veggie", "price": 0.0038 }, { "menuId": 2, "description": "Pepperoni", "price": 0.0042 }], "storeId": "8", "franchiseId": 20 };
 
 
         const loginRes = {
@@ -1259,7 +1259,7 @@ test('Order a Pizza', async ({ page }) => {
     });
 
     await page.route('*/**/api/order/verify', async (route) => {
-        const loginReq = {"jwt":"eyJpYXQiOjE3Mzk2ODMwOTcsImV4cCI6MTczOTc2OTQ5NywiaXNzIjoiY3MzMjkuY2xpY2siLCJhbGciOiJSUzI1NiIsImtpZCI6IjE0bk5YT21jaWt6emlWZWNIcWE1UmMzOENPM1BVSmJuT2MzazJJdEtDZlEifQ.eyJ2ZW5kb3IiOnsiaWQiOiJqYW1lc3A0MCIsIm5hbWUiOiJKYW1lcyBQaGVscHMifSwiZGluZXIiOnsiaWQiOjQsIm5hbWUiOiJUZXN0IiwiZW1haWwiOiJ0QHQudCJ9LCJvcmRlciI6eyJpdGVtcyI6W3sibWVudUlkIjoxLCJkZXNjcmlwdGlvbiI6IlZlZ2dpZSIsInByaWNlIjowLjAwMzh9LHsibWVudUlkIjoyLCJkZXNjcmlwdGlvbiI6IlBlcHBlcm9uaSIsInByaWNlIjowLjAwNDJ9XSwic3RvcmVJZCI6IjgiLCJmcmFuY2hpc2VJZCI6MjAsImlkIjo2M319.PRb_BZrAuZ1j-3ee7YQcpbNL_l44mD052EAqEefW0cBE5EDj10xduDpzZBDYUHHXehv0VnEqSCMke6sBWOjnxIw3uW2AU6Y7HkQBTWzkBq6J4xh0SQpEU3kE1St2IvVFP-9aaMKfuYtOIrOg302fs_89ukKwQkbC6Qe0z6DJ7VRz_fJOlsRQR5JgfpwV0Qom4znQyvD60BQz-y6h4FD4RWHkxGqfXsUgqdq0Ng2EIXUVsW82HEi1ixiRgB_KZYLiNHyt02Sr4KLXoMYgyCg3jgmkZyD4gRYyRHnlHxbAo8U83IIxOjKjMxlZIyDtbvCmAmf6oSArp_nKajLKj3R43R5l5uQDI3qOMQWsubbYH6PsitFrOqCMzAOXXPW2eBGzy1SrTFJ7Vfi8iDMY5DFdeQqH1Zat6ckzybygnrvFdF34TpQfm7jM1uSO9nI2i1v56dJ-JfWz4a1p8EYVOBWMD6hjOEBWm1xQZc6BDZPcZ47l126WesYOf-XygXpQZM7M9GvfPENTf1vmLFIGiQDPGd_eQApbDegLJtpnn1RGHYzG3ItVCxuaBKZD4PFbrdG0LxG-mHiz1eGJ0qhKWA4a2IUmLGnLJkXWAYY__NsAXFy51pjdd5j8AweCw9sNJN4U50Xz6Oom5Q8y8VmutLQ2nsXs9UjryVpXBe25Zky5VeU"};
+        const loginReq = { "jwt": "eyJpYXQiOjE3Mzk2ODMwOTcsImV4cCI6MTczOTc2OTQ5NywiaXNzIjoiY3MzMjkuY2xpY2siLCJhbGciOiJSUzI1NiIsImtpZCI6IjE0bk5YT21jaWt6emlWZWNIcWE1UmMzOENPM1BVSmJuT2MzazJJdEtDZlEifQ.eyJ2ZW5kb3IiOnsiaWQiOiJqYW1lc3A0MCIsIm5hbWUiOiJKYW1lcyBQaGVscHMifSwiZGluZXIiOnsiaWQiOjQsIm5hbWUiOiJUZXN0IiwiZW1haWwiOiJ0QHQudCJ9LCJvcmRlciI6eyJpdGVtcyI6W3sibWVudUlkIjoxLCJkZXNjcmlwdGlvbiI6IlZlZ2dpZSIsInByaWNlIjowLjAwMzh9LHsibWVudUlkIjoyLCJkZXNjcmlwdGlvbiI6IlBlcHBlcm9uaSIsInByaWNlIjowLjAwNDJ9XSwic3RvcmVJZCI6IjgiLCJmcmFuY2hpc2VJZCI6MjAsImlkIjo2M319.PRb_BZrAuZ1j-3ee7YQcpbNL_l44mD052EAqEefW0cBE5EDj10xduDpzZBDYUHHXehv0VnEqSCMke6sBWOjnxIw3uW2AU6Y7HkQBTWzkBq6J4xh0SQpEU3kE1St2IvVFP-9aaMKfuYtOIrOg302fs_89ukKwQkbC6Qe0z6DJ7VRz_fJOlsRQR5JgfpwV0Qom4znQyvD60BQz-y6h4FD4RWHkxGqfXsUgqdq0Ng2EIXUVsW82HEi1ixiRgB_KZYLiNHyt02Sr4KLXoMYgyCg3jgmkZyD4gRYyRHnlHxbAo8U83IIxOjKjMxlZIyDtbvCmAmf6oSArp_nKajLKj3R43R5l5uQDI3qOMQWsubbYH6PsitFrOqCMzAOXXPW2eBGzy1SrTFJ7Vfi8iDMY5DFdeQqH1Zat6ckzybygnrvFdF34TpQfm7jM1uSO9nI2i1v56dJ-JfWz4a1p8EYVOBWMD6hjOEBWm1xQZc6BDZPcZ47l126WesYOf-XygXpQZM7M9GvfPENTf1vmLFIGiQDPGd_eQApbDegLJtpnn1RGHYzG3ItVCxuaBKZD4PFbrdG0LxG-mHiz1eGJ0qhKWA4a2IUmLGnLJkXWAYY__NsAXFy51pjdd5j8AweCw9sNJN4U50Xz6Oom5Q8y8VmutLQ2nsXs9UjryVpXBe25Zky5VeU" };
 
         const loginRes = {
             "message": "valid",
@@ -1312,4 +1312,417 @@ test('Order a Pizza', async ({ page }) => {
     await page.getByRole('button', { name: 'Pay now' }).click();
     await page.getByRole('button', { name: 'Verify' }).click();
     await page.getByRole('button', { name: 'Close' }).click();
+});
+
+
+test('User Profile and Nav', async ({ page }) => {
+    await page.route('*/**/api/auth', async (route) => {
+        const loginReq = { "email": "t@t.t", "password": "t" }
+
+
+        const loginRes = {
+            "user": {
+                "id": 4,
+                "name": "Test",
+                "email": "t@t.t",
+                "roles": []
+            },
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IlRlc3QiLCJlbWFpbCI6InRAdC50Iiwicm9sZXMiOltdLCJpYXQiOjE3Mzk2ODYxNjZ9.hxmF_r2GsHWujAYQ7Y-_evOZ3WVjH7VyXUpLI_PUck4"
+        };
+
+        expect(route.request().method()).toBe('PUT');
+        expect(route.request().postDataJSON()).toMatchObject(loginReq);
+        await route.fulfill({ json: loginRes });
+    });
+
+    await page.route('*/**/api/order', async (route) => {
+    const loginReq = {
+        "dinerId": 4,
+        "orders": [
+            {
+                "id": 53,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:02:04.000Z",
+                "items": [
+                    {
+                        "id": 53,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 54,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 54,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:10:07.000Z",
+                "items": [
+                    {
+                        "id": 55,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 56,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 55,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:10:54.000Z",
+                "items": [
+                    {
+                        "id": 57,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 58,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 56,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:12:50.000Z",
+                "items": [
+                    {
+                        "id": 59,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 60,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 57,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:12:57.000Z",
+                "items": [
+                    {
+                        "id": 61,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 62,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 58,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:13:41.000Z",
+                "items": [
+                    {
+                        "id": 63,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 64,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 59,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:14:12.000Z",
+                "items": [
+                    {
+                        "id": 65,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    }
+                ]
+            },
+            {
+                "id": 60,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:14:25.000Z",
+                "items": [
+                    {
+                        "id": 66,
+                        "menuId": 6,
+                        "description": "Test Item",
+                        "price": 9.99
+                    }
+                ]
+            },
+            {
+                "id": 61,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:15:54.000Z",
+                "items": [
+                    {
+                        "id": 67,
+                        "menuId": 6,
+                        "description": "Test Item",
+                        "price": 9.99
+                    }
+                ]
+            },
+            {
+                "id": 62,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:16:33.000Z",
+                "items": [
+                    {
+                        "id": 68,
+                        "menuId": 6,
+                        "description": "Test Item",
+                        "price": 9.99
+                    }
+                ]
+            }
+        ],
+        "page": 1
+    };
+
+    const loginRes = {
+        "dinerId": 4,
+        "orders": [
+            {
+                "id": 53,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:02:04.000Z",
+                "items": [
+                    {
+                        "id": 53,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 54,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 54,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:10:07.000Z",
+                "items": [
+                    {
+                        "id": 55,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 56,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 55,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:10:54.000Z",
+                "items": [
+                    {
+                        "id": 57,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 58,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 56,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:12:50.000Z",
+                "items": [
+                    {
+                        "id": 59,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 60,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 57,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:12:57.000Z",
+                "items": [
+                    {
+                        "id": 61,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 62,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 58,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:13:41.000Z",
+                "items": [
+                    {
+                        "id": 63,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    },
+                    {
+                        "id": 64,
+                        "menuId": 2,
+                        "description": "Pepperoni",
+                        "price": 0.0042
+                    }
+                ]
+            },
+            {
+                "id": 59,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:14:12.000Z",
+                "items": [
+                    {
+                        "id": 65,
+                        "menuId": 1,
+                        "description": "Veggie",
+                        "price": 0.0038
+                    }
+                ]
+            },
+            {
+                "id": 60,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:14:25.000Z",
+                "items": [
+                    {
+                        "id": 66,
+                        "menuId": 6,
+                        "description": "Test Item",
+                        "price": 9.99
+                    }
+                ]
+            },
+            {
+                "id": 61,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:15:54.000Z",
+                "items": [
+                    {
+                        "id": 67,
+                        "menuId": 6,
+                        "description": "Test Item",
+                        "price": 9.99
+                    }
+                ]
+            },
+            {
+                "id": 62,
+                "franchiseId": 20,
+                "storeId": 8,
+                "date": "2025-02-16T05:16:33.000Z",
+                "items": [
+                    {
+                        "id": 68,
+                        "menuId": 6,
+                        "description": "Test Item",
+                        "price": 9.99
+                    }
+                ]
+            }
+        ],
+        "page": 1
+    };
+        expect(route.request().method()).toBe('GET');
+        expect(route.request().url()).toContain('/api/order');
+        await route.fulfill({ json: loginRes });
+    });
+
+    await page.route('*/**/api/franchise/4', async (route) => {
+        const loginRes: any[] = [];
+
+        expect(route.request().method()).toBe('GET');
+        await route.fulfill({ json: loginRes });
+    });
+
+
+    await page.goto('http://localhost:5173/');
+    await page.getByRole('link', { name: 'Login' }).click();
+    await page.getByRole('textbox', { name: 'Email address' }).click();
+    await page.getByRole('textbox', { name: 'Email address' }).fill('t@t.t');
+    await page.getByRole('textbox', { name: 'Email address' }).press('Tab');
+    await page.getByRole('textbox', { name: 'Password' }).fill('t');
+    await page.getByRole('button', { name: 'Login' }).click();
+    await page.getByRole('link', { name: 'T', exact: true }).click();
+    await page.getByLabel('Global').getByRole('link', { name: 'Franchise' }).click();
+    await page.getByRole('link', { name: 'About' }).click();
+    await page.getByRole('link', { name: 'History' }).click();
 });
