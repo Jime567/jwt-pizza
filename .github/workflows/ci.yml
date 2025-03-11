@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url:
+      url: https://pizza.jamesephelps.com
     env:
       version: ${{needs.build.outputs.version}}
     steps:
